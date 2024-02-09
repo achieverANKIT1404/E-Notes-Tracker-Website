@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>ENotes Tracker-View Notes</title>
+</head>
+<body>
+
+     <section>
+                           
+                       <div class="container mt-5">
+                    <div class="card-header text-center fs-4 bg-success" style="color: white; width: 66%; margin-left: 17%"> View all notes  </div>                                              
+                                          
+                      
+	                 <div class="row">
+	                     <div th:each="n:${notesList}" class="col-md-8 offset-md-2 mt-3">
+	                         <div class="card ">
+	                             
+	                             <div class="card-body">
+	                             
+	                              <th:block th:if="${session.msg}">
+	                                  <p class="alert alert-success text-center ">[[${session.msg}]]</p>
+	                                  <th:block th:text="${#session.removeAttribute('msg')}"/>
+	                             </th:block>
+	                             
+	                             <th:block th:if="${session.war}">
+	                                  <p class="alert alert-danger text-center">[[${session.war}]]</p>
+	                                  <th:block th:text="${#session.removeAttribute('war')}"/>
+	                       </th:block> 
+	                                <div class="text-center">
+	                                <i class="fa-solid fa-book fa-2x"></i>
+                                          </div>
+                                      <p class="fw-bold">[[${n.title}]]</p>
+                                      <p>[[${n.description}]]</p>
+                                      <p>Published Date : <span class="fw-bold text-success"> [[${n.date}]]</span></p>                                                                               
+                                      
+                                      <div class="text-center">
+                                          <a th:href="@{'/user/edit_notes/'+${n.id}}" class="btn btn-primary btn-sm"> <i class="fa-solid fa-pen-to-square"></i> </a>
+                                           <a th:href="@{'/user/delete_notes/'+${n.id}}" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash-can"></i> </a>
+                                          
+                                      </div>
+	                             </div>
+	                         </div>
+	                     </div>
+	                 </div>
+	                 
+	                 <div class="col-md-6 offset-md-5 mt-3">
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination">
+						      <li  th:if="${currentPage!=0}" class="page-item" >
+						      <a th:href="@{'view_notes?pageno='+${currentPage-1}}" class="page-link"  aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						     </a>
+						      </li>
+					      
+							    <li th:each="i:${#numbers.sequence(1,totalPages)}"  th:classappend="${currentPage==i-1 ? 'active': ' '}" class="page-item">
+							    <a class="page-link" th:href="@{'view_notes?pageno='+${i-1}}">
+							    [[${i}]]</a></li>
+							   
+							    <li th:if="${currentPage+1!=totalPages}" class="page-item">
+							      <a  class="page-link"th:href="@{'view_notes?pageno='+${currentPage+1}}" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+					             </a>
+					           </li>
+					  </ul>
+					</nav>
+					</div>
+	             </div>        
+     </section>
+</body>
+</html>

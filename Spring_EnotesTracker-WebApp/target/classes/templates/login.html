@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>ENotes Tracker-Login</title>
+</head>
+<body>
+
+     <section>
+         <div class="container mt-5">
+	                 <div class="row">
+	                     <div class="col-md-6 offset-md-3">
+	                         <div class="card">
+	                             <div class="card-header text-center fs-4 ">  User Login  </div>
+	                             
+	                            <div th:if="${param.error}" class="alert alert-danger text-center">
+	                                     [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+	                             </div>
+	                             
+	                               <div th:if="${param.logout}" class="alert alert-success text-center">
+	                                     Logout Successfully...
+	                               </div>
+	                             
+	                             <div class="card-body">
+	                                <form action="/login" method="post">
+	                                	                                                          	                                 	                                     	                                     
+	                                      <div class="mb-3">	                          
+	                                        <label>Enter Email</label><input type="text" name="username" class="form-control">
+	                                      </div>
+	                                        	                                        	                                   
+	                                        <div class="mb-3">
+	                                        <label>Enter Password</label><input type="password" name="password" class="form-control">
+	                                        </div>
+	                                        	                                      
+	                                        <button class="btn btn-success col-md-12">Login</button>
+	                                        
+	                             
+	                                        <div class="card-footer text-center mt-2 fs-7">
+	                                              <a href="/loadforgotpass" class="text-decoration-none">Forgot Password ?</a>
+	                                              <p class="fs-7">
+	                                              Don't have an account <a href="/register" class="text-decoration-none">register here</a>
+	                                              </p>
+	                                        </div>
+	                                        
+	                                </form>
+	                             </div>
+	                         </div>
+	                     </div>
+	                 </div>
+	             </div>            
+     </section>
+</body>
+</html>

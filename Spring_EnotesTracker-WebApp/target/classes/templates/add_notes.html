@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>ENotes Tracker-Add Notes</title>
+</head>
+<body>
+
+     <section>
+            <div class="container mt-4">
+	                 <div class="row">
+	                     <div class="col-md-8 offset-md-2">
+	                         <div class="card">
+	                             <div class="card-header text-center fs-4 ">  Add Notes  </div>
+	                             
+	                             <th:block th:if="${session.msg}">
+	                                  <p class="alert alert-success text-center">[[${session.msg}]]</p>
+	                                  <th:block th:text="${#session.removeAttribute('msg')}"/>
+	                             </th:block>
+	                             
+	                             <th:block th:if="${session.war}">
+	                                  <p class="alert alert-danger text-center">[[${session.war}]]</p>
+	                                  <th:block th:text="${#session.removeAttribute('war')}"/>
+	                             </th:block>
+	                             
+	                             <div class="card-body">
+	                                <form action="saveNotes" method="post">
+	                                	                                                          	                                 	                                     	                                     
+	                                      <div class="mb-3">	                          
+	                                        <label>Enter Title</label><input type="text" name="title" class="form-control">
+	                                      </div>
+	                                        	                                        	                                   
+	                                        <div class="mb-3">
+	                                        <label>Enter Description</label><textarea rows="6" cols="" class="form-control"
+	                                        name="description"
+	                                        >	  </textarea>                                    	                                       
+	                                        </div>
+	                                        	                                      
+	                                        <button class="btn btn-success col-md-12">Save</button>
+	                                        	                                        	                                        
+	                                </form>
+	                             </div>
+	                         </div>
+	                     </div>
+	                 </div>
+	             </div>            
+     </section>
+</body>
+</html>
